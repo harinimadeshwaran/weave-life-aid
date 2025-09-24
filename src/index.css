@@ -2,9 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Blood Donation Website Design System - Medical Theme */
 
 @layer base {
   :root {
@@ -17,11 +15,14 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Medical Red Theme */
+    --primary: 0 84% 60%;
+    --primary-foreground: 0 0% 98%;
+    --primary-hover: 0 84% 55%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Medical Blue for Trust */
+    --secondary: 217 91% 60%;
+    --secondary-foreground: 0 0% 98%;
 
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
@@ -34,7 +35,19 @@ All colors MUST be HSL.
 
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --ring: 0 84% 60%;
+
+    /* Medical Theme Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(0 84% 60%), hsl(349 84% 65%));
+    --gradient-secondary: linear-gradient(135deg, hsl(217 91% 60%), hsl(200 91% 65%));
+    --gradient-hero: linear-gradient(135deg, hsl(0 84% 60% / 0.9), hsl(349 84% 65% / 0.8));
+    
+    /* Shadows */
+    --shadow-medical: 0 10px 30px -10px hsl(0 84% 60% / 0.2);
+    --shadow-card: 0 4px 20px -4px hsl(222.2 84% 4.9% / 0.1);
+    
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
     --radius: 0.5rem;
 
@@ -101,5 +114,70 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  /* Medical Button Variants */
+  .btn-medical {
+    @apply bg-gradient-to-r from-red-500 to-red-600 text-white shadow-lg hover:shadow-red-500/25 transition-all duration-300;
+  }
+  
+  .btn-medical-outline {
+    @apply border-2 border-red-500 text-red-500 hover:bg-red-500 hover:text-white transition-all duration-300;
+  }
+  
+  .btn-secondary-medical {
+    @apply bg-gradient-to-r from-blue-500 to-blue-600 text-white shadow-lg hover:shadow-blue-500/25 transition-all duration-300;
+  }
+
+  /* Medical Cards */
+  .card-medical {
+    @apply bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-100;
+  }
+  
+  .card-donor {
+    @apply bg-white rounded-lg shadow-md hover:shadow-lg transition-all duration-300 border-l-4 border-red-500;
+  }
+
+  /* Hero Section */
+  .hero-medical {
+    @apply bg-gradient-to-br from-red-500/90 to-red-600/80 text-white;
+  }
+
+  /* Medical Icons */
+  .icon-medical {
+    @apply w-12 h-12 p-3 bg-red-100 text-red-600 rounded-full;
+  }
+  
+  /* Animations */
+  .fade-in {
+    @apply animate-[fadeIn_0.6s_ease-out];
+  }
+  
+  .slide-up {
+    @apply animate-[slideUp_0.8s_ease-out];
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
