@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Blood Donation Website Design System - Medical Theme */
+/* Professional Blood Donation Website Design System */
 
 @layer base {
   :root {
@@ -15,39 +15,59 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    /* Medical Red Theme */
-    --primary: 0 84% 60%;
+    /* Professional Medical Red Theme */
+    --primary: 0 72% 51%;
     --primary-foreground: 0 0% 98%;
-    --primary-hover: 0 84% 55%;
+    --primary-hover: 0 72% 46%;
+    --primary-light: 0 72% 96%;
 
-    /* Medical Blue for Trust */
-    --secondary: 217 91% 60%;
+    /* Complementary Medical Blue for Trust */
+    --secondary: 210 100% 56%;
     --secondary-foreground: 0 0% 98%;
+    --secondary-light: 210 100% 96%;
 
+    /* Neutral Grays */
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
 
     --accent: 210 40% 96.1%;
     --accent-foreground: 222.2 47.4% 11.2%;
 
+    /* Success & Error States */
+    --success: 142 71% 45%;
+    --success-foreground: 0 0% 98%;
+    --success-light: 142 71% 96%;
+
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 98%;
+    --warning-light: 38 92% 96%;
+
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 0 84% 60%;
+    --ring: 0 72% 51%;
 
-    /* Medical Theme Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(0 84% 60%), hsl(349 84% 65%));
-    --gradient-secondary: linear-gradient(135deg, hsl(217 91% 60%), hsl(200 91% 65%));
-    --gradient-hero: linear-gradient(135deg, hsl(0 84% 60% / 0.9), hsl(349 84% 65% / 0.8));
+    /* Professional Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(0 72% 51%), hsl(340 72% 56%));
+    --gradient-secondary: linear-gradient(135deg, hsl(210 100% 56%), hsl(220 100% 61%));
+    --gradient-hero: linear-gradient(135deg, hsl(0 72% 51% / 0.95), hsl(340 72% 56% / 0.9));
+    --gradient-success: linear-gradient(135deg, hsl(142 71% 45%), hsl(152 71% 50%));
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%), hsl(0 0% 98%));
     
-    /* Shadows */
-    --shadow-medical: 0 10px 30px -10px hsl(0 84% 60% / 0.2);
-    --shadow-card: 0 4px 20px -4px hsl(222.2 84% 4.9% / 0.1);
+    /* Advanced Shadows */
+    --shadow-sm: 0 2px 4px -1px hsl(222.2 84% 4.9% / 0.06);
+    --shadow-md: 0 4px 12px -2px hsl(222.2 84% 4.9% / 0.08);
+    --shadow-lg: 0 8px 25px -5px hsl(222.2 84% 4.9% / 0.1);
+    --shadow-xl: 0 20px 40px -10px hsl(222.2 84% 4.9% / 0.15);
+    --shadow-medical: 0 10px 30px -10px hsl(0 72% 51% / 0.25);
+    --shadow-glow: 0 0 20px hsl(0 72% 51% / 0.3);
     
-    /* Animations */
+    /* Smooth Animations */
+    --transition-fast: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 
     --radius: 0.5rem;
 
@@ -118,45 +138,114 @@
 }
 
 @layer components {
-  /* Medical Button Variants */
+  /* Professional Button Variants */
   .btn-medical {
-    @apply bg-gradient-to-r from-red-500 to-red-600 text-white shadow-lg hover:shadow-red-500/25 transition-all duration-300;
+    @apply bg-[var(--gradient-primary)] text-white shadow-[var(--shadow-md)] hover:shadow-[var(--shadow-medical)] transform hover:-translate-y-0.5;
+    transition: var(--transition-smooth);
   }
   
   .btn-medical-outline {
-    @apply border-2 border-red-500 text-red-500 hover:bg-red-500 hover:text-white transition-all duration-300;
+    @apply border-2 border-primary text-primary bg-white hover:bg-primary hover:text-white shadow-[var(--shadow-sm)] hover:shadow-[var(--shadow-md)];
+    transition: var(--transition-smooth);
   }
   
-  .btn-secondary-medical {
-    @apply bg-gradient-to-r from-blue-500 to-blue-600 text-white shadow-lg hover:shadow-blue-500/25 transition-all duration-300;
+  .btn-secondary {
+    @apply bg-[var(--gradient-secondary)] text-white shadow-[var(--shadow-md)] hover:shadow-lg transform hover:-translate-y-0.5;
+    transition: var(--transition-smooth);
   }
 
-  /* Medical Cards */
+  .btn-success {
+    @apply bg-[var(--gradient-success)] text-white shadow-[var(--shadow-md)] hover:shadow-lg;
+    transition: var(--transition-smooth);
+  }
+
+  /* Professional Cards */
   .card-medical {
-    @apply bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-100;
+    @apply bg-[var(--gradient-card)] rounded-xl shadow-[var(--shadow-lg)] hover:shadow-[var(--shadow-xl)] border border-gray-100;
+    transition: var(--transition-smooth);
   }
   
   .card-donor {
-    @apply bg-white rounded-lg shadow-md hover:shadow-lg transition-all duration-300 border-l-4 border-red-500;
+    @apply bg-white rounded-lg shadow-[var(--shadow-md)] hover:shadow-[var(--shadow-lg)] border-l-4 border-primary;
+    transition: var(--transition-smooth);
   }
 
-  /* Hero Section */
+  .card-feature {
+    @apply bg-white rounded-xl shadow-[var(--shadow-md)] hover:shadow-[var(--shadow-lg)] border border-gray-50 hover:border-primary/20;
+    transition: var(--transition-smooth);
+  }
+
+  /* Hero & Background Sections */
   .hero-medical {
-    @apply bg-gradient-to-br from-red-500/90 to-red-600/80 text-white;
+    @apply bg-[var(--gradient-hero)] text-white relative overflow-hidden;
   }
 
-  /* Medical Icons */
+  .section-gradient {
+    @apply bg-gradient-to-br from-gray-50 to-white;
+  }
+
+  /* Professional Icons */
   .icon-medical {
-    @apply w-12 h-12 p-3 bg-red-100 text-red-600 rounded-full;
+    @apply w-12 h-12 p-3 bg-primary/10 text-primary rounded-xl shadow-[var(--shadow-sm)];
   }
   
-  /* Animations */
+  .icon-feature {
+    @apply w-16 h-16 p-4 bg-gradient-to-br from-primary/10 to-primary/5 text-primary rounded-2xl shadow-[var(--shadow-sm)];
+  }
+
+  /* Form Elements */
+  .input-medical {
+    @apply border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-lg;
+    transition: var(--transition-fast);
+  }
+
+  .form-card {
+    @apply bg-white rounded-xl shadow-[var(--shadow-lg)] border border-gray-100 p-6;
+  }
+
+  /* Status Indicators */
+  .status-pending {
+    @apply bg-warning/10 text-warning border border-warning/20 px-3 py-1 rounded-full text-sm font-medium;
+  }
+
+  .status-approved {
+    @apply bg-success/10 text-success border border-success/20 px-3 py-1 rounded-full text-sm font-medium;
+  }
+
+  .status-completed {
+    @apply bg-primary/10 text-primary border border-primary/20 px-3 py-1 rounded-full text-sm font-medium;
+  }
+  
+  /* Enhanced Animations */
   .fade-in {
     @apply animate-[fadeIn_0.6s_ease-out];
   }
   
   .slide-up {
     @apply animate-[slideUp_0.8s_ease-out];
+  }
+
+  .scale-hover {
+    @apply transform hover:scale-105;
+    transition: var(--transition-smooth);
+  }
+
+  .glow-hover {
+    @apply hover:shadow-[var(--shadow-glow)];
+    transition: var(--transition-smooth);
+  }
+
+  /* Professional Text Styles */
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent;
+  }
+
+  .heading-medical {
+    @apply text-gray-900 font-bold tracking-tight;
+  }
+
+  .text-medical {
+    @apply text-gray-600 leading-relaxed;
   }
 }
 

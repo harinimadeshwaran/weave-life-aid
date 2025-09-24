@@ -235,9 +235,11 @@ const RegisterUser = () => {
 
                 <Button 
                   type="submit" 
-                  className="w-full btn-secondary-medical"
+                  variant="secondary"
+                  className="w-full"
                   size="lg"
                 >
+                  <User className="mr-2 h-5 w-5" />
                   Create User Account
                 </Button>
               </form>

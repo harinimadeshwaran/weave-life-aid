@@ -109,7 +109,7 @@ const Navbar = () => {
             ) : (
               <div className="flex items-center space-x-4">
                 <Link to="/register/donor">
-                  <Button className="btn-medical">
+                  <Button variant="medical" size="sm">
                     <Heart className="h-4 w-4 mr-2" />
                     Donate
                   </Button>
@@ -201,7 +201,7 @@ const Navbar = () => {
               ) : (
                 <div className="space-y-2 pt-4 border-t">
                   <Link to="/register/donor" onClick={() => setIsOpen(false)}>
-                    <Button className="w-full btn-medical">
+                    <Button variant="medical" className="w-full">
                       <Heart className="h-4 w-4 mr-2" />
                       Donate
                     </Button>

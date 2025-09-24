@@ -300,7 +300,8 @@ const RegisterDonor = () => {
 
                 <Button 
                   type="submit" 
-                  className="w-full btn-medical"
+                  variant="medical"
+                  className="w-full"
                   size="lg"
                 >
                   <Heart className="mr-2 h-5 w-5" />

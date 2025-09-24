@@ -202,7 +202,8 @@ const Login = () => {
 
                         <Button 
                           type="submit" 
-                          className="w-full btn-medical"
+                          variant={role === 'donor' ? 'medical' : role === 'admin' ? 'default' : 'secondary'}
+                          className="w-full"
                           size="lg"
                         >
                           Sign in as {role.charAt(0).toUpperCase() + role.slice(1)}
