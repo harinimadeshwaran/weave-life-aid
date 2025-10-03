@@ -57,40 +57,40 @@ const AdminDashboard = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <header className="bg-white shadow-sm border-b">
+      <header className="bg-white shadow-md border-b sticky top-0 z-40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-8">
-              <div className="flex items-center space-x-2">
-                <div className="bg-gradient-to-r from-purple-500 to-purple-600 p-2 rounded-lg">
+              <Link to="/" className="flex items-center space-x-2 hover:opacity-80 transition-opacity">
+                <div className="bg-[var(--gradient-purple)] p-2 rounded-lg shadow-md">
                   <Shield className="h-6 w-6 text-white" />
                 </div>
-                <span className="text-xl font-bold text-gray-900">BloodLife Admin</span>
-              </div>
-              <nav className="hidden md:flex space-x-8">
-                <Link to="/dashboard/admin" className="text-gray-700 hover:text-purple-600 px-3 py-2 rounded-md text-sm font-medium">
+                <span className="text-xl font-bold heading-medical">BloodLife Admin</span>
+              </Link>
+              <nav className="hidden md:flex space-x-6">
+                <Link to="/dashboard/admin" className="text-gray-700 hover:text-[hsl(var(--admin-purple))] px-3 py-2 rounded-md text-sm font-medium transition-colors">
                   Dashboard
                 </Link>
-                <Link to="/dashboard/admin/users" className="text-gray-700 hover:text-purple-600 px-3 py-2 rounded-md text-sm font-medium">
-                  Manage Users
+                <Link to="/dashboard/admin/users" className="text-gray-700 hover:text-[hsl(var(--admin-purple))] px-3 py-2 rounded-md text-sm font-medium transition-colors">
+                  Users
                 </Link>
-                <Link to="/dashboard/admin/donors" className="text-gray-700 hover:text-purple-600 px-3 py-2 rounded-md text-sm font-medium">
-                  Manage Donors
+                <Link to="/dashboard/admin/donors" className="text-gray-700 hover:text-[hsl(var(--admin-purple))] px-3 py-2 rounded-md text-sm font-medium transition-colors">
+                  Donors
                 </Link>
-                <Link to="/dashboard/admin/requests" className="text-gray-700 hover:text-purple-600 px-3 py-2 rounded-md text-sm font-medium">
+                <Link to="/dashboard/admin/requests" className="text-gray-700 hover:text-[hsl(var(--admin-purple))] px-3 py-2 rounded-md text-sm font-medium transition-colors">
                   Requests
                 </Link>
-                <Link to="/dashboard/admin/camps" className="text-gray-700 hover:text-purple-600 px-3 py-2 rounded-md text-sm font-medium">
+                <Link to="/dashboard/admin/camps" className="text-gray-700 hover:text-[hsl(var(--admin-purple))] px-3 py-2 rounded-md text-sm font-medium transition-colors">
                   Camps
                 </Link>
-                <Link to="/dashboard/admin/reports" className="text-gray-700 hover:text-purple-600 px-3 py-2 rounded-md text-sm font-medium">
+                <Link to="/dashboard/admin/reports" className="text-gray-700 hover:text-[hsl(var(--admin-purple))] px-3 py-2 rounded-md text-sm font-medium transition-colors">
                   Reports
                 </Link>
               </nav>
             </div>
             <div className="flex items-center space-x-4">
-              <span className="text-sm text-gray-700">Admin: {user?.name}</span>
-              <Button onClick={handleLogout} variant="outline" size="sm">
+              <span className="text-sm font-medium text-gray-700">Admin: {user?.name}</span>
+              <Button onClick={handleLogout} variant="purple" size="sm">
                 <LogOut className="h-4 w-4 mr-2" />
                 Logout
               </Button>
@@ -131,15 +131,15 @@ const DashboardHome = ({ users, donors, requests, camps }: any) => {
       {/* Stats Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {stats.map((stat, index) => (
-          <Card key={index}>
+          <Card key={index} className="card-feature hover:scale-hover">
             <CardContent className="p-6">
               <div className="flex items-center">
-                <div className={`p-2 ${stat.bgColor} rounded-lg`}>
+                <div className={`icon-medical ${stat.bgColor}`}>
                   <stat.icon className={`h-6 w-6 ${stat.color}`} />
                 </div>
                 <div className="ml-4">
-                  <p className="text-sm font-medium text-gray-600">{stat.title}</p>
-                  <p className="text-2xl font-bold text-gray-900">{stat.value}</p>
+                  <p className="text-sm font-medium text-muted-foreground">{stat.title}</p>
+                  <p className="text-3xl font-bold heading-medical">{stat.value}</p>
                 </div>
               </div>
             </CardContent>

@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Eye, EyeOff, Heart, User, Shield, UserPlus } from 'lucide-react';
+import { Eye, EyeOff, Heart, User, Shield, UserPlus, LogIn } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { useAuth } from '@/App';
 import Navbar from '@/components/Navbar';
@@ -202,10 +202,11 @@ const Login = () => {
 
                         <Button 
                           type="submit" 
-                          variant={role === 'donor' ? 'medical' : role === 'admin' ? 'default' : 'secondary'}
+                          variant={role === 'donor' ? 'teal' : role === 'admin' ? 'purple' : 'secondary'}
                           className="w-full"
                           size="lg"
                         >
+                          <LogIn className="mr-2 h-5 w-5" />
                           Sign in as {role.charAt(0).toUpperCase() + role.slice(1)}
                         </Button>
                       </form>

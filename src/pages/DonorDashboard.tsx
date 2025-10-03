@@ -93,52 +93,52 @@ const DonorDashboard = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <header className="bg-white shadow-sm border-b">
+      <header className="bg-white shadow-md border-b sticky top-0 z-40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-8">
-              <div className="flex items-center space-x-2">
-                <div className="bg-gradient-to-r from-red-500 to-red-600 p-2 rounded-lg">
+              <Link to="/" className="flex items-center space-x-2 hover:opacity-80 transition-opacity">
+                <div className="bg-[var(--gradient-teal)] p-2 rounded-lg shadow-md">
                   <Heart className="h-6 w-6 text-white" />
                 </div>
-                <span className="text-xl font-bold text-gray-900">BloodLife</span>
-              </div>
-              <nav className="hidden md:flex space-x-8">
+                <span className="text-xl font-bold heading-medical">BloodLife</span>
+              </Link>
+              <nav className="hidden md:flex space-x-6">
                 <Link
                   to="/dashboard/donor"
-                  className="text-gray-700 hover:text-red-600 px-3 py-2 rounded-md text-sm font-medium"
+                  className="text-gray-700 hover:text-[hsl(var(--medical-teal))] px-3 py-2 rounded-md text-sm font-medium transition-colors"
                 >
                   Dashboard
                 </Link>
                 <Link
                   to="/dashboard/donor/profile"
-                  className="text-gray-700 hover:text-red-600 px-3 py-2 rounded-md text-sm font-medium"
+                  className="text-gray-700 hover:text-[hsl(var(--medical-teal))] px-3 py-2 rounded-md text-sm font-medium transition-colors"
                 >
                   My Profile
                 </Link>
                 <Link
                   to="/dashboard/donor/donations"
-                  className="text-gray-700 hover:text-red-600 px-3 py-2 rounded-md text-sm font-medium"
+                  className="text-gray-700 hover:text-[hsl(var(--medical-teal))] px-3 py-2 rounded-md text-sm font-medium transition-colors"
                 >
                   My Donations
                 </Link>
                 <Link
                   to="/dashboard/donor/camps"
-                  className="text-gray-700 hover:text-red-600 px-3 py-2 rounded-md text-sm font-medium"
+                  className="text-gray-700 hover:text-[hsl(var(--medical-teal))] px-3 py-2 rounded-md text-sm font-medium transition-colors"
                 >
                   Upcoming Camps
                 </Link>
                 <Link
                   to="/dashboard/donor/requests"
-                  className="text-gray-700 hover:text-red-600 px-3 py-2 rounded-md text-sm font-medium"
+                  className="text-gray-700 hover:text-[hsl(var(--medical-teal))] px-3 py-2 rounded-md text-sm font-medium transition-colors"
                 >
                   Blood Requests
                 </Link>
               </nav>
             </div>
             <div className="flex items-center space-x-4">
-              <span className="text-sm text-gray-700">Welcome, {user?.name}</span>
-              <Button onClick={handleLogout} variant="outline" size="sm">
+              <span className="text-sm font-medium text-gray-700">Welcome, {user?.name}</span>
+              <Button onClick={handleLogout} variant="teal" size="sm">
                 <LogOut className="h-4 w-4 mr-2" />
                 Logout
               </Button>
@@ -169,55 +169,55 @@ const DashboardHome = ({ donations, requests }: { donations: any[]; requests: an
       </div>
 
       {/* Quick Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <Card>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <Card className="card-feature hover:scale-hover">
           <CardContent className="p-6">
             <div className="flex items-center">
-              <div className="p-2 bg-red-100 rounded-lg">
-                <Heart className="h-6 w-6 text-red-600" />
+              <div className="icon-medical bg-[hsl(var(--primary))]/10">
+                <Heart className="h-6 w-6 text-[hsl(var(--primary))]" />
               </div>
               <div className="ml-4">
-                <p className="text-sm font-medium text-gray-600">Total Donations</p>
-                <p className="text-2xl font-bold text-gray-900">{donations.length}</p>
+                <p className="text-sm font-medium text-muted-foreground">Total Donations</p>
+                <p className="text-3xl font-bold heading-medical">{donations.length}</p>
               </div>
             </div>
           </CardContent>
         </Card>
-        <Card>
+        <Card className="card-feature hover:scale-hover">
           <CardContent className="p-6">
             <div className="flex items-center">
-              <div className="p-2 bg-green-100 rounded-lg">
-                <CheckCircle className="h-6 w-6 text-green-600" />
+              <div className="icon-medical bg-[hsl(var(--success))]/10">
+                <CheckCircle className="h-6 w-6 text-[hsl(var(--success))]" />
               </div>
               <div className="ml-4">
-                <p className="text-sm font-medium text-gray-600">Lives Saved</p>
-                <p className="text-2xl font-bold text-gray-900">{donations.length * 3}</p>
+                <p className="text-sm font-medium text-muted-foreground">Lives Saved</p>
+                <p className="text-3xl font-bold heading-medical">{donations.length * 3}</p>
               </div>
             </div>
           </CardContent>
         </Card>
-        <Card>
+        <Card className="card-feature hover:scale-hover">
           <CardContent className="p-6">
             <div className="flex items-center">
-              <div className="p-2 bg-blue-100 rounded-lg">
-                <Clock className="h-6 w-6 text-blue-600" />
+              <div className="icon-medical bg-[hsl(var(--medical-teal))]/10">
+                <Clock className="h-6 w-6 text-[hsl(var(--medical-teal))]" />
               </div>
               <div className="ml-4">
-                <p className="text-sm font-medium text-gray-600">Pending Requests</p>
-                <p className="text-2xl font-bold text-gray-900">{requests.length}</p>
+                <p className="text-sm font-medium text-muted-foreground">Pending Requests</p>
+                <p className="text-3xl font-bold heading-medical">{requests.length}</p>
               </div>
             </div>
           </CardContent>
         </Card>
-        <Card>
+        <Card className="card-feature hover:scale-hover">
           <CardContent className="p-6">
             <div className="flex items-center">
-              <div className="p-2 bg-purple-100 rounded-lg">
-                <Calendar className="h-6 w-6 text-purple-600" />
+              <div className="icon-medical bg-[hsl(var(--secondary))]/10">
+                <Calendar className="h-6 w-6 text-[hsl(var(--secondary))]" />
               </div>
               <div className="ml-4">
-                <p className="text-sm font-medium text-gray-600">Next Eligible</p>
-                <p className="text-2xl font-bold text-gray-900">45 days</p>
+                <p className="text-sm font-medium text-muted-foreground">Next Eligible</p>
+                <p className="text-3xl font-bold heading-medical">45 days</p>
               </div>
             </div>
           </CardContent>

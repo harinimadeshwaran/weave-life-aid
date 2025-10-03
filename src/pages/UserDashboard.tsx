@@ -83,46 +83,46 @@ const UserDashboard = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <header className="bg-white shadow-sm border-b">
+      <header className="bg-white shadow-md border-b sticky top-0 z-40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-8">
-              <div className="flex items-center space-x-2">
-                <div className="bg-gradient-to-r from-red-500 to-red-600 p-2 rounded-lg">
+              <Link to="/" className="flex items-center space-x-2 hover:opacity-80 transition-opacity">
+                <div className="bg-[var(--gradient-secondary)] p-2 rounded-lg shadow-md">
                   <Heart className="h-6 w-6 text-white" />
                 </div>
-                <span className="text-xl font-bold text-gray-900">BloodLife</span>
-              </div>
-              <nav className="hidden md:flex space-x-8">
+                <span className="text-xl font-bold heading-medical">BloodLife</span>
+              </Link>
+              <nav className="hidden md:flex space-x-6">
                 <Link
                   to="/dashboard/user"
-                  className="text-gray-700 hover:text-red-600 px-3 py-2 rounded-md text-sm font-medium"
+                  className="text-gray-700 hover:text-[hsl(var(--secondary))] px-3 py-2 rounded-md text-sm font-medium transition-colors"
                 >
                   Dashboard
                 </Link>
                 <Link
                   to="/dashboard/user/find-donors"
-                  className="text-gray-700 hover:text-red-600 px-3 py-2 rounded-md text-sm font-medium"
+                  className="text-gray-700 hover:text-[hsl(var(--secondary))] px-3 py-2 rounded-md text-sm font-medium transition-colors"
                 >
                   Find Donors
                 </Link>
                 <Link
                   to="/dashboard/user/request-blood"
-                  className="text-gray-700 hover:text-red-600 px-3 py-2 rounded-md text-sm font-medium"
+                  className="text-gray-700 hover:text-[hsl(var(--primary))] px-3 py-2 rounded-md text-sm font-medium transition-colors"
                 >
                   Request Blood
                 </Link>
                 <Link
                   to="/dashboard/user/my-requests"
-                  className="text-gray-700 hover:text-red-600 px-3 py-2 rounded-md text-sm font-medium"
+                  className="text-gray-700 hover:text-[hsl(var(--secondary))] px-3 py-2 rounded-md text-sm font-medium transition-colors"
                 >
                   My Requests
                 </Link>
               </nav>
             </div>
             <div className="flex items-center space-x-4">
-              <span className="text-sm text-gray-700">Welcome, {user?.name}</span>
-              <Button onClick={handleLogout} variant="outline" size="sm">
+              <span className="text-sm font-medium text-gray-700">Welcome, {user?.name}</span>
+              <Button onClick={handleLogout} variant="secondary" size="sm">
                 <LogOut className="h-4 w-4 mr-2" />
                 Logout
               </Button>
@@ -153,41 +153,41 @@ const DashboardHome = ({ requests }: { requests: any[] }) => {
 
       {/* Quick Stats */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <Card>
+        <Card className="card-feature hover:scale-hover">
           <CardContent className="p-6">
             <div className="flex items-center">
-              <div className="p-2 bg-blue-100 rounded-lg">
-                <Search className="h-6 w-6 text-blue-600" />
+              <div className="icon-medical bg-[hsl(var(--secondary))]/10">
+                <Search className="h-6 w-6 text-[hsl(var(--secondary))]" />
               </div>
               <div className="ml-4">
-                <p className="text-sm font-medium text-gray-600">Available Donors</p>
-                <p className="text-2xl font-bold text-gray-900">150+</p>
+                <p className="text-sm font-medium text-muted-foreground">Available Donors</p>
+                <p className="text-3xl font-bold heading-medical">150+</p>
               </div>
             </div>
           </CardContent>
         </Card>
-        <Card>
+        <Card className="card-feature hover:scale-hover">
           <CardContent className="p-6">
             <div className="flex items-center">
-              <div className="p-2 bg-red-100 rounded-lg">
-                <Heart className="h-6 w-6 text-red-600" />
+              <div className="icon-medical bg-[hsl(var(--primary))]/10">
+                <Heart className="h-6 w-6 text-[hsl(var(--primary))]" />
               </div>
               <div className="ml-4">
-                <p className="text-sm font-medium text-gray-600">Active Requests</p>
-                <p className="text-2xl font-bold text-gray-900">{requests.filter(r => r.status === 'Pending').length}</p>
+                <p className="text-sm font-medium text-muted-foreground">Active Requests</p>
+                <p className="text-3xl font-bold heading-medical">{requests.filter(r => r.status === 'Pending').length}</p>
               </div>
             </div>
           </CardContent>
         </Card>
-        <Card>
+        <Card className="card-feature hover:scale-hover">
           <CardContent className="p-6">
             <div className="flex items-center">
-              <div className="p-2 bg-green-100 rounded-lg">
-                <CheckCircle className="h-6 w-6 text-green-600" />
+              <div className="icon-medical bg-[hsl(var(--success))]/10">
+                <CheckCircle className="h-6 w-6 text-[hsl(var(--success))]" />
               </div>
               <div className="ml-4">
-                <p className="text-sm font-medium text-gray-600">Successful Matches</p>
-                <p className="text-2xl font-bold text-gray-900">{requests.filter(r => r.status === 'Accepted').length}</p>
+                <p className="text-sm font-medium text-muted-foreground">Successful Matches</p>
+                <p className="text-3xl font-bold heading-medical">{requests.filter(r => r.status === 'Accepted').length}</p>
               </div>
             </div>
           </CardContent>
@@ -196,42 +196,52 @@ const DashboardHome = ({ requests }: { requests: any[] }) => {
 
       {/* Quick Actions */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <Card>
+        <Card className="card-medical">
           <CardHeader>
-            <CardTitle>Quick Actions</CardTitle>
+            <CardTitle className="flex items-center text-xl">
+              <Heart className="mr-2 h-5 w-5 text-[hsl(var(--primary))]" />
+              Quick Actions
+            </CardTitle>
           </CardHeader>
-          <CardContent className="space-y-4">
+          <CardContent className="space-y-3">
             <Link to="/dashboard/user/find-donors">
-              <Button className="w-full justify-start" variant="outline">
-                <Search className="mr-2 h-4 w-4" />
+              <Button className="w-full justify-start" variant="secondary" size="lg">
+                <Search className="mr-2 h-5 w-5" />
                 Find Blood Donors
               </Button>
             </Link>
             <Link to="/dashboard/user/request-blood">
-              <Button className="w-full justify-start btn-medical">
-                <Plus className="mr-2 h-4 w-4" />
+              <Button className="w-full justify-start" variant="medical" size="lg">
+                <Plus className="mr-2 h-5 w-5" />
                 Create Blood Request
               </Button>
             </Link>
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="card-medical">
           <CardHeader>
-            <CardTitle>Recent Requests</CardTitle>
+            <CardTitle className="flex items-center text-xl">
+              <FileText className="mr-2 h-5 w-5 text-[hsl(var(--secondary))]" />
+              Recent Requests
+            </CardTitle>
           </CardHeader>
           <CardContent>
-            {requests.slice(0, 3).map((request) => (
-              <div key={request.id} className="flex items-center justify-between py-2 border-b last:border-b-0">
-                <div>
-                  <p className="font-medium">{request.bloodGroup} needed</p>
-                  <p className="text-sm text-gray-600">{request.hospital}</p>
+            {requests.length > 0 ? (
+              requests.slice(0, 3).map((request) => (
+                <div key={request.id} className="flex items-center justify-between py-3 border-b last:border-b-0">
+                  <div>
+                    <p className="font-semibold heading-medical">{request.bloodGroup} needed</p>
+                    <p className="text-sm text-medical">{request.hospital}</p>
+                  </div>
+                  <Badge className={request.status === 'Pending' ? 'status-pending' : 'status-approved'}>
+                    {request.status}
+                  </Badge>
                 </div>
-                <Badge variant={request.status === 'Pending' ? 'destructive' : 'default'}>
-                  {request.status}
-                </Badge>
-              </div>
-            ))}
+              ))
+            ) : (
+              <p className="text-center text-muted-foreground py-4">No requests yet</p>
+            )}
           </CardContent>
         </Card>
       </div>
@@ -298,50 +308,61 @@ const FindDonors = ({ donors }: { donors: any[] }) => {
       </Card>
 
       {/* Donor Results */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {filteredDonors.map((donor) => (
-          <Card key={donor.id} className="hover:shadow-lg transition-shadow">
-            <CardContent className="p-6">
-              <div className="flex items-center justify-between mb-4">
-                <div className="flex items-center space-x-3">
-                  <div className="bg-red-100 p-2 rounded-full">
-                    <User className="h-6 w-6 text-red-600" />
+      {filteredDonors.length > 0 ? (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filteredDonors.map((donor) => (
+            <Card key={donor.id} className="card-donor hover:scale-hover">
+              <CardContent className="p-6">
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center space-x-3">
+                    <div className="bg-[hsl(var(--primary))]/10 p-3 rounded-full">
+                      <User className="h-6 w-6 text-[hsl(var(--primary))]" />
+                    </div>
+                    <div>
+                      <h3 className="font-bold heading-medical">{donor.name}</h3>
+                      <p className="text-sm text-muted-foreground">Age: {donor.age}</p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="font-semibold">{donor.name}</h3>
-                    <p className="text-sm text-gray-600">Age: {donor.age}</p>
+                  <Badge className="bg-[hsl(var(--primary))]/10 text-[hsl(var(--primary))] font-bold text-base px-3 py-1">
+                    {donor.bloodGroup}
+                  </Badge>
+                </div>
+                <div className="space-y-2 mb-4">
+                  <div className="flex items-center text-sm text-medical">
+                    <MapPin className="h-4 w-4 mr-2 text-[hsl(var(--primary))]" />
+                    {donor.location}
+                  </div>
+                  <div className="flex items-center text-sm text-medical">
+                    <Phone className="h-4 w-4 mr-2 text-[hsl(var(--primary))]" />
+                    {donor.contact}
+                  </div>
+                  <div className="flex items-center text-sm text-medical">
+                    <Calendar className="h-4 w-4 mr-2 text-[hsl(var(--primary))]" />
+                    Last donation: {donor.lastDonation}
                   </div>
                 </div>
-                <Badge className="bg-red-100 text-red-800">
-                  {donor.bloodGroup}
-                </Badge>
-              </div>
-              <div className="space-y-2 mb-4">
-                <div className="flex items-center text-sm text-gray-600">
-                  <MapPin className="h-4 w-4 mr-2" />
-                  {donor.location}
+                <div className="flex items-center justify-between">
+                  <Badge variant="outline" className="text-[hsl(var(--success))] border-[hsl(var(--success))]">
+                    {donor.availability}
+                  </Badge>
+                  <Button size="sm" variant="medical">
+                    <Phone className="h-4 w-4 mr-2" />
+                    Contact
+                  </Button>
                 </div>
-                <div className="flex items-center text-sm text-gray-600">
-                  <Phone className="h-4 w-4 mr-2" />
-                  {donor.contact}
-                </div>
-                <div className="flex items-center text-sm text-gray-600">
-                  <Calendar className="h-4 w-4 mr-2" />
-                  Last donation: {donor.lastDonation}
-                </div>
-              </div>
-              <div className="flex items-center justify-between">
-                <Badge variant="outline" className="text-green-600 border-green-600">
-                  {donor.availability}
-                </Badge>
-                <Button size="sm" className="btn-medical">
-                  Contact Donor
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      ) : (
+        <Card className="card-feature">
+          <CardContent className="p-12 text-center">
+            <AlertCircle className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
+            <h3 className="text-lg font-semibold heading-medical mb-2">No Donors Found</h3>
+            <p className="text-muted-foreground">Try adjusting your search filters</p>
+          </CardContent>
+        </Card>
+      )}
     </div>
   );
 };
