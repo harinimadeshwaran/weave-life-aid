@@ -9,11 +9,14 @@ import {
   MapPin, 
   Clock,
   Send,
-  Heart
+  Heart,
+  MessageCircle,
+  CheckCircle2
 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import contactSupport from '@/assets/contact-support.jpg';
 
 const Contact = () => {
   const { toast } = useToast();
@@ -26,6 +29,27 @@ const Contact = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Validate all fields are filled
+    if (!formData.name || !formData.email || !formData.subject || !formData.message) {
+      toast({
+        title: "Missing Information",
+        description: "Please fill in all required fields.",
+        variant: "destructive"
+      });
+      return;
+    }
+    
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      toast({
+        title: "Invalid Email",
+        description: "Please enter a valid email address.",
+        variant: "destructive"
+      });
+      return;
+    }
     
     // Simulate form submission
     toast({
@@ -56,28 +80,40 @@ const Contact = () => {
       title: 'Emergency Hotline',
       details: '+1 (555) 123-4567',
       description: '24/7 emergency blood requests',
-      color: 'text-red-600'
+      color: 'text-red-600',
+      bgColor: 'bg-red-50',
+      borderColor: 'border-red-200',
+      gradient: 'from-red-500 to-pink-500'
     },
     {
       icon: Mail,
       title: 'Email Support',
       details: 'help@bloodlife.org',
       description: 'General inquiries and support',
-      color: 'text-blue-600'
+      color: 'text-blue-600',
+      bgColor: 'bg-blue-50',
+      borderColor: 'border-blue-200',
+      gradient: 'from-blue-500 to-cyan-500'
     },
     {
       icon: MapPin,
       title: 'Main Office',
       details: '123 Medical Center Drive',
       description: 'Health City, State 12345',
-      color: 'text-green-600'
+      color: 'text-green-600',
+      bgColor: 'bg-green-50',
+      borderColor: 'border-green-200',
+      gradient: 'from-green-500 to-teal-500'
     },
     {
       icon: Clock,
       title: 'Office Hours',
       details: 'Mon - Fri: 8AM - 6PM',
       description: 'Weekend emergency line available',
-      color: 'text-purple-600'
+      color: 'text-purple-600',
+      bgColor: 'bg-purple-50',
+      borderColor: 'border-purple-200',
+      gradient: 'from-purple-500 to-indigo-500'
     },
   ];
 
@@ -86,11 +122,17 @@ const Contact = () => {
       <Navbar />
       
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-red-500 to-red-600 text-white py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative bg-gradient-to-br from-purple-600 via-indigo-600 to-blue-600 text-white py-24 overflow-hidden">
+        <div className="absolute inset-0 opacity-20">
+          <img src={contactSupport} alt="Support team" className="w-full h-full object-cover" />
+        </div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">Contact Us</h1>
-            <p className="text-xl text-red-100 max-w-3xl mx-auto leading-relaxed">
+            <div className="inline-flex items-center justify-center p-2 bg-white/10 backdrop-blur-sm rounded-full mb-6">
+              <MessageCircle className="h-8 w-8 text-white" />
+            </div>
+            <h1 className="text-5xl md:text-6xl font-bold mb-6">Contact Us</h1>
+            <p className="text-xl text-purple-100 max-w-3xl mx-auto leading-relaxed">
               Have questions about blood donation or need emergency assistance? 
               We're here to help 24/7.
             </p>
@@ -103,15 +145,16 @@ const Contact = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {contactInfo.map((info, index) => (
-              <Card key={index} className="text-center hover:shadow-xl transition-shadow duration-300 border-0 shadow-lg">
-                <CardContent className="p-6">
-                  <div className={`bg-gray-50 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center ${info.color}`}>
-                    <info.icon className="h-8 w-8" />
+              <Card key={index} className={`text-center hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border-2 ${info.borderColor} shadow-lg overflow-hidden group`}>
+                <CardContent className="p-6 relative">
+                  <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${info.gradient}`}></div>
+                  <div className={`${info.bgColor} rounded-2xl p-4 w-20 h-20 mx-auto mb-4 flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
+                    <info.icon className={`h-10 w-10 ${info.color}`} />
                   </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">
                     {info.title}
                   </h3>
-                  <p className="font-medium text-gray-900 mb-1">
+                  <p className="font-semibold text-gray-900 mb-1">
                     {info.details}
                   </p>
                   <p className="text-gray-600 text-sm">
@@ -201,12 +244,17 @@ const Contact = () => {
                     
                     <Button 
                       type="submit" 
-                      className="w-full btn-medical text-white font-semibold"
+                      variant="purple"
+                      className="w-full font-semibold"
                       size="lg"
                     >
                       <Send className="mr-2 h-5 w-5" />
                       Send Message
                     </Button>
+                    <p className="text-xs text-gray-500 text-center mt-2 flex items-center justify-center">
+                      <CheckCircle2 className="h-3 w-3 mr-1" />
+                      We typically respond within 24 hours
+                    </p>
                   </form>
                 </CardContent>
               </Card>

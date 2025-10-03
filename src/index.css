@@ -22,9 +22,19 @@
     --primary-light: 0 72% 96%;
 
     /* Complementary Medical Blue for Trust */
-    --secondary: 210 100% 56%;
+    --secondary: 210 95% 60%;
     --secondary-foreground: 0 0% 98%;
     --secondary-light: 210 100% 96%;
+    
+    /* Medical Teal for Calm */
+    --medical-teal: 180 70% 45%;
+    --medical-teal-foreground: 0 0% 98%;
+    --medical-teal-light: 180 70% 96%;
+    
+    /* Professional Purple for Admin */
+    --admin-purple: 270 70% 55%;
+    --admin-purple-foreground: 0 0% 98%;
+    --admin-purple-light: 270 70% 96%;
 
     /* Neutral Grays */
     --muted: 210 40% 96.1%;
@@ -51,8 +61,11 @@
 
     /* Professional Gradients */
     --gradient-primary: linear-gradient(135deg, hsl(0 72% 51%), hsl(340 72% 56%));
-    --gradient-secondary: linear-gradient(135deg, hsl(210 100% 56%), hsl(220 100% 61%));
-    --gradient-hero: linear-gradient(135deg, hsl(0 72% 51% / 0.95), hsl(340 72% 56% / 0.9));
+    --gradient-secondary: linear-gradient(135deg, hsl(210 95% 60%), hsl(220 95% 65%));
+    --gradient-teal: linear-gradient(135deg, hsl(180 70% 45%), hsl(190 70% 50%));
+    --gradient-purple: linear-gradient(135deg, hsl(270 70% 55%), hsl(280 70% 60%));
+    --gradient-hero: linear-gradient(135deg, hsl(210 95% 60% / 0.95), hsl(220 95% 65% / 0.9));
+    --gradient-hero-red: linear-gradient(135deg, hsl(0 72% 51% / 0.95), hsl(340 72% 56% / 0.9));
     --gradient-success: linear-gradient(135deg, hsl(142 71% 45%), hsl(152 71% 50%));
     --gradient-card: linear-gradient(145deg, hsl(0 0% 100%), hsl(0 0% 98%));
     
